@@ -1,4 +1,4 @@
-# jquery_extensi-n_url_reader
+# jquery_extension_url_reader
 ##English below
 ########### ESPAÑOL/SPANISH
 Extensión para jquery que permite recuperar parametros de la url tanto resful como no.
