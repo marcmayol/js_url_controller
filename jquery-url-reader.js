@@ -93,7 +93,6 @@ urlReader.removeParam = function (paramName, resful, more) {
         var query_string = this.url.substr(this.url.indexOf("?") + 1);
         var params_query_string = query_string.split("&");
         for (var i = 0; i < params_query_string.length; i++) {
-            console.log("hola for");
             if (params_query_string[i].split("=")[0] === paramName) {
                 params_query_string[i] = '';
                 params_query_string = params_query_string.filter(Boolean);
@@ -115,7 +114,50 @@ urlReader.removeParam = function (paramName, resful, more) {
         }
     }
 };
-
+urlReader.clean=function(resful){
+    (resful===true)?this.url=window.location.protocol + "//" + window.location.host:this.url=window.location.href.split("?")[0];   
+};
+urlReader.updateParam = function (paramName,value, resful, more) {
+    if (resful) {
+        var rm = this.getParamIndex(paramName);
+        this.spliter_url[rm] = paramName;
+        if (more)
+            this.spliter_url[rm + 1] = value;
+        this.spliter_url = this.spliter_url.filter(Boolean);
+        var url_new = window.location.protocol + "//" + window.location.host;
+        this.spliter_url.forEach(function (item, index) {
+            if (item !== window.location.host && item !== window.location.protocol)
+                url_new += "/" + item;
+        });
+        this.url = url_new;
+        this.spliter_url = this.url.split("/").filter(Boolean);
+    } else {
+        var query_string = this.url.substr(this.url.indexOf("?") + 1);
+        var params_query_string = query_string.split("&");
+        for (var i = 0; i < params_query_string.length; i++) {
+            if (params_query_string[i].split("=")[0] === paramName) {
+                params_query_string[i] = paramName+"="+value;
+                params_query_string = params_query_string.filter(Boolean);
+                i = params_query_string.length;
+            }
+        }
+        var url_new = window.location.href.split("?")[0];
+        if (params_query_string.length > 1) {
+            for (var i = 0; i < params_query_string.length; i++) {
+                if (i < 1) {
+                    if (params_query_string[i] !== '' && params_query_string[i] !== null)
+                        url_new += "?" + params_query_string[i]
+                } else {
+                    if (params_query_string[i] !== '' && params_query_string[i] !== null)
+                        url_new += "&" + params_query_string[i];
+                }
+            }
+            this.url = url_new;
+        }
+    }
+};
 if (window.jQuery) {
     jQuery.extend(urlReader);
 }
+
+
