@@ -18,6 +18,7 @@ Y como tercera opción se puede obtener en una url resful el valor de una posici
  yoururl.server/super/
 $.getParam(o)=super
 
+además consta de funciones de modificación y eliminación de parámetros
 
 ########### INGLÉS // ENGLISH
 Extension for jquery that allows to recover parameters of the url both resful and not.
@@ -36,3 +37,4 @@ $ .getParam ("param", - 1) = super
 And as a third option you can get in a resful url the value of a specific position
   yoururl.server / super /
 $ .getParam (o) = super
+lso includes functions for changing and deleting parameters
