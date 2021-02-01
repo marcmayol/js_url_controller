@@ -38,5 +38,3 @@ And as a third option you can get in a resful url the value of a specific positi
   yoururl.server / super /
 $ .getParam (o) = super
 lso includes functions for changing and deleting parameters
-
-UPDATE NETX MONTH //// ACTUALIZACIÓN EL MÉS QUE VIENE
